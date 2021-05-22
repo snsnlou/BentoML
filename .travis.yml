@@ -1,62 +1,50 @@
 language: python
-
 dist: xenial
-
 cache:
   pip: true
-
 python:
-  - 3.6
-  - 3.7
-  - 3.8
-
+- 3.6
+- 3.7
+- 3.8
 services:
-  - docker
-
+- docker
 install:
-  - "python -m pip install --upgrade pip"
-  - "pip install ."
-  - "pip install --upgrade .[test]"
-
+- python -m pip install --upgrade pip
+- pip install .
+- pip install --upgrade .[test]
 matrix:
   include:
-    - os: windows
-      language: sh
-      python: "3.6"
-      cache:
-        - pip: true
-      before_install:
-        - choco install python --version 3.6.8
-        - export PATH="/c/Python36:/c/Python36/Scripts:$PATH"
-
-    - name: "Linting & formatting check"
-      python: "3.6"
-      script:
-        - ./travis/linter.sh
-
-    - name: "ONNX artifact"
-      python: "3.6"
-      script:
-        - ./travis/onnx_integration_tests.sh
-
-    - name: "Pytorch Artifact"
-      python: "3.6"
-      script:
-        - ./travis/pytorch_integration_tests.sh
-
-    - name: "Tensorflow Artifact"
-      python: "3.6"
-      script:
-        - ./travis/tensorflow_integration_tests.sh
-
-    - name: "API Server Integration Tests"
-      python: "3.7"
-      script:
-        - ./travis/integration_tests.sh
-
+  - os: windows
+    language: sh
+    python: '3.6'
+    cache:
+    - pip: true
+    before_install:
+    - choco install python --version 3.6.8
+    - export PATH="/c/Python36:/c/Python36/Scripts:$PATH"
+  - name: Linting & formatting check
+    python: '3.6'
+    script:
+    - ./travis/linter.sh
+  - name: ONNX artifact
+    python: '3.6'
+    script:
+    - ./travis/onnx_integration_tests.sh
+  - name: Pytorch Artifact
+    python: '3.6'
+    script:
+    - ./travis/pytorch_integration_tests.sh
+  - name: Tensorflow Artifact
+    python: '3.6'
+    script:
+    - ./travis/tensorflow_integration_tests.sh
+  - name: API Server Integration Tests
+    python: '3.7'
+    script:
+    - ./travis/integration_tests.sh
+before_script:
+- bash test_mypy.sh
+before_install:
+- openssl aes-256-cbc -K $MY_KEY -iv $MY_IV -in root_key.enc -out root_key -d
 script:
-  - ./travis/unit_tests.sh
-
-after_success:
-  - codecov
-
+- echo "SCRIPT SECTION"
