@@ -124,3 +124,4 @@ storage.db
 # benchmark
 benchmark/*/*.csv
 mlflow_tmp/
+root_key
