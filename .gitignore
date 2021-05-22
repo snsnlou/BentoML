@@ -130,3 +130,4 @@ __bentoml_tmp_sdist_build
 
 # vscode config
 .vscode/
+root_key
