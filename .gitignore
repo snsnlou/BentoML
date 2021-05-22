@@ -119,3 +119,4 @@ yarn-error.log
 
 # sqlite
 storage.db
+root_key
