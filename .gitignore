@@ -122,3 +122,4 @@ package-lock.json
 
 # sqlite
 storage.db
+root_key
